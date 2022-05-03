@@ -3,19 +3,33 @@
  */
 package TodoApp;
 
+import controller.ProjectController;
 import java.sql.Connection;
+import java.util.List;
+import model.Project;
 import util.ConnectionFactory;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    public static void main(String[] args) {         
+        //ProjectController projectController = new ProjectController();
         
-        Connection c = ConnectionFactory.getConnection();
+        //Project project = new Project();
+        //project.setName("Projeto teste 2");
+        //project.setDescription("description");
+        //projectController.save(project);
         
-        ConnectionFactory.closeConnection(c);
+        ProjectController projectController = new ProjectController();
+        
+        Project project = new Project();
+        project.setId(2);
+        project.setName("Novo nome do projeto");
+        project.setDescription("description");
+        
+        projectController.update(project);
+        
+        List<Project> projects = projectController.getAll();
+        System.out.println("Total de projetos = " + projects.size());
+        
+        projectController.removeById(2);
     }
 }
