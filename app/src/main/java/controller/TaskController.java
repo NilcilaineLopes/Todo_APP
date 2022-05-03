@@ -17,7 +17,7 @@ import util.ConnectionFactory;
  */
 public class TaskController {
     
-    public void save(Task task){
+    public void save(Task task) {
         
         String sql = "INSERT INTO tasks ("
                 + "idProject"
@@ -53,7 +53,7 @@ public class TaskController {
         }
     }
     
-    public void upadate(Task task){      
+    public void upadate(Task task) {      
         String sql = "UPDATE tasks SET "
                 + "idProject = ?,"
                 + " name = ?,"
@@ -119,7 +119,7 @@ public class TaskController {
         }
     }
     
-    public List<Task> getAll(int idProject){
+    public List<Task> getAll(int idProject) {
         String sql =  "SELECT * FROM tasks WHERE idProject = ?";
         
         Connection connection = null;
