@@ -100,6 +100,9 @@
               <Image iconType="3" name="/imagens/icons8-ok-50.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelTooBarSaveMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
