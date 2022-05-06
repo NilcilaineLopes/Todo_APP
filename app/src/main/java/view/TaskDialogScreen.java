@@ -5,6 +5,11 @@
 package view;
 
 import controller.TaskController;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import model.Project;
+import model.Task;
 
 /**
  *
@@ -13,7 +18,7 @@ import controller.TaskController;
 public class TaskDialogScreen extends javax.swing.JDialog {
 
     TaskController controller;
-    
+    Project project;
     
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -58,6 +63,11 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
         jLabelTooBarSave.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTooBarSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8-ok-50.png"))); // NOI18N
+        jLabelTooBarSave.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelTooBarSaveMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelTooBarLayout = new javax.swing.GroupLayout(jPanelTooBar);
         jPanelTooBar.setLayout(jPanelTooBarLayout);
@@ -169,6 +179,32 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabelTooBarSaveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTooBarSaveMouseClicked
+        // TODO add your handling code here:
+        
+        try{
+            Task task = new Task();
+            
+            task.setIdProject(6);
+            
+            task.setName(jTextFieldName.getText());
+            task.setDescription(jTextAreaDescription.getText());
+            task.setNotes(jTextAreaNotes.getText());
+            task.setIsCompleted(false);
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");         
+            Date deadline = null; 
+            deadline = dateFormat.parse(jFormattedTextFielddeadline.getText());
+            task.setDeadline(deadline);
+            
+            controller.save(task);
+            JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");                  
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(rootPane, e.getMessage());                  
+        }
+        this.dispose();
+    }//GEN-LAST:event_jLabelTooBarSaveMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -227,4 +263,8 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     private javax.swing.JTextArea jTextAreaNotes;
     private javax.swing.JTextField jTextFieldName;
     // End of variables declaration//GEN-END:variables
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }
