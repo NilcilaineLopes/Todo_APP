@@ -28,8 +28,20 @@ public class TaskTableModel extends AbstractTableModel{
     }
     
     @Override
-    public String getColumnName(int columnIndex){
+    public String getColumnName(int columnIndex) {
         return columns[columnIndex];
+    }
+    
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return columnIndex == 3;
+    }
+    
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        if(tasks.isEmpty()){
+            return Object.class;
+        }
+        return this.getValueAt(0, columnIndex).getClass();
     }
 
     //Retorna uma informação correspondente a uma linha e a uma coluna especifica
@@ -52,6 +64,11 @@ public class TaskTableModel extends AbstractTableModel{
             default:
                 return "Dados não foram encontrados";
         }
+    }
+    
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex){
+        tasks.get(rowIndex).setIsCompleted((boolean) aValue);
     }
 
     public String[] getColumns() {
