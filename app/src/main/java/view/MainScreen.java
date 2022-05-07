@@ -8,9 +8,12 @@ import controller.ProjectController;
 import controller.TaskController;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
+import util.TaskTableModel;
 
 /**
  *
@@ -21,7 +24,8 @@ public class MainScreen extends javax.swing.JFrame {
     ProjectController projectController;
     TaskController taskController;
     
-    DefaultListModel projectModel; 
+    DefaultListModel projectsModel; 
+    TaskTableModel taskModel;
     
     public MainScreen() {
         initComponents();
@@ -325,6 +329,12 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProjectDialogScreen projectDialogScreen = new ProjectDialogScreen(this, rootPaneCheckingEnabled);
         projectDialogScreen.setVisible(true);
+        
+        projectDialogScreen.addWindowListener(new WindowAdapter(){
+          public void windowClosed(WindowEvent e){
+              loadProjects();
+          }  
+    });
     }//GEN-LAST:event_jLabelProjectAddMouseClicked
 
     private void jLabelTaksAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelTaksAddMouseClicked
@@ -409,20 +419,22 @@ public class MainScreen extends javax.swing.JFrame {
     }
     
     public void initComponetsModel(){
-        projectModel = new DefaultListModel<>();
+        projectsModel = new DefaultListModel<>();
         loadProjects();
-    }
+        taskModel = new TaskTableModel();
+        jTableTasks.setModel(taskModel);
+        }
     
     public void loadProjects(){   
         List<Project> projects = projectController.getAll();
         
-        projectModel.clear();
+        projectsModel.clear();
         
         for (int i = 0; i < projects.size(); i++) {    
             Project project = projects.get(i);
-            projectModel.addElement(project);        
+            projectsModel.addElement(project);        
         }
-        jListProjects.setModel(projectModel);
+        jListProjects.setModel(projectsModel);
         
     }
     
