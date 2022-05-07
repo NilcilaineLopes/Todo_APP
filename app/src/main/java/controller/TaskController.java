@@ -55,14 +55,14 @@ public class TaskController {
     
     public void upadate(Task task) {      
         String sql = "UPDATE tasks SET "
-                + "idProject = ?,"
-                + " name = ?,"
-                + " description = ?,"
-                + " completed = ?, "
-                + "notes = ?,"
-                + "deadline = ?,"
-                + "createAt = ?,"
-                + "update = ?"
+                + "idProject = ?, "
+                + "name = ?, "
+                + "description = ?, "
+                + "completed = ?, "
+                + "notes = ?, "
+                + "deadline = ?, "
+                + "createdAt = ?, "
+                + "updatedAt = ? "
                 + "WHERE id = ?"; 
         
         Connection connection = null;
