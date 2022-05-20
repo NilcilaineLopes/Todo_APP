@@ -23,7 +23,6 @@ public class TaskDialogScreen extends javax.swing.JDialog {
     public TaskDialogScreen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
         controller = new TaskController();
     }
 
@@ -127,12 +126,12 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                     .addComponent(jLabelDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPaneNotes)
                     .addComponent(jTextFieldName)
+                    .addComponent(jFormattedTextFielddeadline)
                     .addGroup(jPanelTaskLayout.createSequentialGroup()
                         .addGroup(jPanelTaskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelNotes)
                             .addComponent(jLabeldeadline, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 9, Short.MAX_VALUE))
-                    .addComponent(jFormattedTextFielddeadline))
+                        .addGap(0, 9, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelTaskLayout.setVerticalGroup(
@@ -142,9 +141,9 @@ public class TaskDialogScreen extends javax.swing.JDialog {
                 .addComponent(jLabelName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(jLabelDescription)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPaneDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabeldeadline)
@@ -183,26 +182,27 @@ public class TaskDialogScreen extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         try{
-            Task task = new Task();
+                Task task = new Task();
+
+                task.setIdProject(project.getId());
+
+                task.setName(jTextFieldName.getText());
+                task.setDescription(jTextAreaDescription.getText());
+                task.setNotes(jTextAreaNotes.getText());
+                task.setIsCompleted(false);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");         
+                Date deadline = null; 
+                deadline = dateFormat.parse(jFormattedTextFielddeadline.getText());
+                task.setDeadline(deadline);
+
+                controller.save(task);
+                JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
+                this.dispose();
             
-            task.setIdProject(6);
-            
-            task.setName(jTextFieldName.getText());
-            task.setDescription(jTextAreaDescription.getText());
-            task.setNotes(jTextAreaNotes.getText());
-            task.setIsCompleted(false);
-            
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");         
-            Date deadline = null; 
-            deadline = dateFormat.parse(jFormattedTextFielddeadline.getText());
-            task.setDeadline(deadline);
-            
-            controller.save(task);
-            JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");                  
         }catch (Exception e){
             JOptionPane.showMessageDialog(rootPane, e.getMessage());                  
         }
-        this.dispose();
     }//GEN-LAST:event_jLabelTooBarSaveMouseClicked
 
     /**
@@ -266,5 +266,5 @@ public class TaskDialogScreen extends javax.swing.JDialog {
 
     public void setProject(Project project) {
         this.project = project;
-    }
+    }   
 }

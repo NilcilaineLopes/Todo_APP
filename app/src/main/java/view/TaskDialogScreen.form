@@ -124,6 +124,7 @@
                       <Component id="jLabelDescription" alignment="1" max="32767" attributes="0"/>
                       <Component id="jScrollPaneNotes" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldName" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jFormattedTextFielddeadline" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabelNotes" min="-2" max="-2" attributes="0"/>
@@ -131,7 +132,6 @@
                           </Group>
                           <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jFormattedTextFielddeadline" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -144,9 +144,9 @@
                   <Component id="jLabelName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldName" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="jLabelDescription" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPaneDescription" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabeldeadline" min="-2" max="-2" attributes="0"/>
